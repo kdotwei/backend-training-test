@@ -56,19 +56,26 @@ jobs:
               core.setOutput('submodule', changedSubmodules[0]);
             }
 
-      - name: Test submodule
+      - name: Install dependencies
         if: steps.changed_submodules.outputs.submodule != ''
         run: |
           submodule=${{ steps.changed_submodules.outputs.submodule }}
           echo "Testing $submodule"
+
+      - name: Install dependencies
+        if: steps.changed_submodules.outputs.submodule != ''
+        run: |
+          submodule=${{ steps.changed_submodules.outputs.submodule }}
           cd members/$submodule
-          # Update submodules
-          git submodule update --init --recursive
-          # Install dependencies
           if [ -f requirements.txt ]; then
             pip install -r requirements.txt
           fi
-          # Copy test script
-          cp ../../.github/scripts/test_hello_world.py .
-          pytest test_hello_world.py
-          cd ../../
+
+      - name: Test submodule
+      if: steps.changed_submodules.outputs.submodule != ''
+      run: |
+        submodule=${{ steps.changed_submodules.outputs.submodule }}
+        cd members/$submodule
+        cp ../../.github/scripts/test_hello_world.py .
+        pytest test_hello_world.py
+
