@@ -72,10 +72,10 @@ jobs:
           fi
 
       - name: Test submodule
-      if: steps.changed_submodules.outputs.submodule != ''
-      run: |
-        submodule=${{ steps.changed_submodules.outputs.submodule }}
-        cd members/$submodule
-        cp ../../.github/scripts/test_hello_world.py .
-        pytest test_hello_world.py
+        if: steps.changed_submodules.outputs.submodule != ''
+        run: |
+          submodule=${{ steps.changed_submodules.outputs.submodule }}
+          cd members/$submodule
+          cp ../../.github/scripts/test_hello_world.py .
+          pytest test_hello_world.py
 
