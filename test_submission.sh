@@ -2,6 +2,12 @@
 
 DIVIDER="---"
 
+# Copy test files into project
+echo "Copy test files into project"
+echo "$DIVIDER"
+cp -r ./.github/scripts/* ./app/
+echo "$DIVIDER"
+
 # Execute check_files.sh
 echo "$DIVIDER"
 echo "Check Files Change"
