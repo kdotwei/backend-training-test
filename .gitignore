@@ -5,3 +5,4 @@ app
 docker-compose.yaml
 *.bak
 requirements.txt
+__pycache__
