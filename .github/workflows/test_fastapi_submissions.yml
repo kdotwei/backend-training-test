@@ -72,6 +72,7 @@ jobs:
 
       - name: Copy and run test script
         run: |
+          pwd
           cd members/${{ steps.changed_submodules.outputs.current_submodule }}
           cp ../../.github/scripts/test_hello_world.py .
           pytest test_hello_world.py
