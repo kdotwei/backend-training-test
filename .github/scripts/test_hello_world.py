@@ -1,7 +1,7 @@
 # .github/scripts/test_fastapi.py
 import pytest
 from fastapi.testclient import TestClient
-from app.main import app  # Assuming the FastAPI app object is in app.main
+from main import app  # Assuming the FastAPI app object is in app.main
 
 client = TestClient(app)
 
